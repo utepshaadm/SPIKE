@@ -31,8 +31,8 @@ class SPIKE:
         self.j = 0
     
     def update(self):
-        self.j = (self.j + self.deck[self.deck[self.deck[self.c]]]) & 0xff
-        self.deck[self.j], self.deck[self.c] = self.deck[self.c], self.deck[self.j]
+        self.j = (self.j + self.deck[self.deck[self.deck[0]]]) & 0xff
+        self.deck[self.j], self.deck[0] = self.deck[0], self.deck[self.j]
         o = self.deck[self.deck[self.deck[self.j]]]
         return o
          
