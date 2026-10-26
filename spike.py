@@ -19,16 +19,15 @@ class SPIKE:
         self.j = 0
         self.c = 0
         for i in range(256):
+            self.j = (self.j + self.deck[self.j]) % 256
             k = key[i % len(key)]
-            self.j = (self.j + self.deck[self.deck[self.deck[self.j]]]) % 256
-            self.deck[self.j], self.deck[0] = self.deck[0], self.deck[self.j]
             self.deck[self.j], self.deck[k] = self.deck[k], self.deck[self.j]
             
         for i in range(256):
+            self.j = (self.j + self.deck[self.j]) % 256
             k = nonce[i % len(nonce)]
-            self.j = (self.j + self.deck[self.deck[self.deck[self.j]]]) % 256
-            self.deck[self.j], self.deck[0] = self.deck[0], self.deck[self.j]
             self.deck[self.j], self.deck[k] = self.deck[k], self.deck[self.j]
+        self.i = 0
         self.j = 0
     
     def update(self):
