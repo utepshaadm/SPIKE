@@ -14,17 +14,16 @@ class SPIKE:
         return urandom(nonce_len)
             
     def ksa(self, key, nonce):
-        self.deck = list(range(256))
         self.j = 0
         c = 0
         for i in range(256):
-            self.j = (self.j + self.deck[c]) % 256
+            self.j = (self.j + self.deck[self.j] + c) % 256
             k = key[i % len(key)]
             self.deck[self.j], self.deck[k] = self.deck[k], self.deck[self.j]
             c = (c + 1) % 256
             
         for i in range(256):
-            self.j = (self.j + self.deck[c]) % 256
+            self.j = (self.j + self.deck[self.j] + c) % 256
             k = nonce[i % len(nonce)]
             self.deck[self.j], self.deck[k] = self.deck[k], self.deck[self.j]
             c = (c + 1) % 256
