@@ -6,7 +6,6 @@ class SPIKE:
     def __init__(self):
         self.deck = list(range(256))
         self.j = 0
-        self.c = 0
         
     def gen_rand_key(self, keylen=32):
         return urandom(keylen)
@@ -17,7 +16,6 @@ class SPIKE:
     def ksa(self, key, nonce):
         self.deck = list(range(256))
         self.j = 0
-        self.c = 0
         for i in range(256):
             self.j = (self.j + self.deck[self.j]) % 256
             k = key[i % len(key)]
@@ -27,8 +25,6 @@ class SPIKE:
             self.j = (self.j + self.deck[self.j]) % 256
             k = nonce[i % len(nonce)]
             self.deck[self.j], self.deck[k] = self.deck[k], self.deck[self.j]
-        self.i = 0
-        self.j = 0
     
     def update(self):
         self.j = (self.j + self.deck[self.deck[self.deck[0]]]) & 0xff
