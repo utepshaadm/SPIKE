@@ -16,15 +16,18 @@ class SPIKE:
     def ksa(self, key, nonce):
         self.deck = list(range(256))
         self.j = 0
+        c = 0
         for i in range(256):
-            self.j = (self.j + self.deck[self.j]) % 256
+            self.j = (self.j + self.deck[c]) % 256
             k = key[i % len(key)]
             self.deck[self.j], self.deck[k] = self.deck[k], self.deck[self.j]
+            c = (c + 1) % 256
             
         for i in range(256):
-            self.j = (self.j + self.deck[self.j]) % 256
+            self.j = (self.j + self.deck[c]) % 256
             k = nonce[i % len(nonce)]
             self.deck[self.j], self.deck[k] = self.deck[k], self.deck[self.j]
+            c = (c + 1) % 256
     
     def update(self):
         self.j = (self.j + self.deck[self.deck[self.deck[0]]]) & 0xff
