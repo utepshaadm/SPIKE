@@ -29,9 +29,9 @@ class SPIKE:
             c = (c + 1) % 256
     
     def update(self):
-        self.j = (self.deck[self.deck[self.deck[self.j]]])
+        self.j = (self.j + self.deck[self.deck[self.deck[0]]]) & 0xff
         self.deck[self.j], self.deck[0] = self.deck[0], self.deck[self.j]
-        return self.deck[self.deck[self.deck[(self.deck[self.j] + self.deck[0] ) & 0xff]]]
+        return self.deck[self.deck[self.deck[0]]]
          
     def encrypt_byte(self, b):
         num = ord(b)
