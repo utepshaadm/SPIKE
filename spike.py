@@ -6,6 +6,7 @@ class SPIKE:
     def __init__(self):
         self.deck = list(range(256))
         self.j = 0
+        self.c = 0
         
     def gen_rand_key(self, keylen=32):
         return urandom(keylen)
@@ -28,10 +29,11 @@ class SPIKE:
             self.deck[self.j], self.deck[k] = self.deck[k], self.deck[self.j]
             c = (c + 1) % 256
     
-    def update(self):
-        self.j = (self.j + self.deck[self.deck[self.deck[0]]]) & 0xff
-        self.deck[self.j], self.deck[0] = self.deck[0], self.deck[self.j]
-        return self.deck[self.deck[self.deck[0]]]
+     def update(self):
+        self.j = (self.j + self.deck[self.c]) & 0xff
+        self.deck[self.j], self.deck[self.c] = self.deck[self.c], self.deck[self.j]
+        self.c = (self.c + 1) % 256
+        return self.deck[self.deck[self.deck[self.j]]]
          
     def encrypt_byte(self, b):
         num = ord(b)
