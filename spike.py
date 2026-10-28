@@ -30,7 +30,7 @@ class SPIKE:
             c = (c + 1) % 256
     
      def update(self):
-        self.j = (self.j + self.deck[self.c]) & 0xff
+        self.j = (self.j + self.deck[self.deck[self.deck[self.c]]]) & 0xff
         self.deck[self.j], self.deck[self.c] = self.deck[self.c], self.deck[self.j]
         self.c = (self.c + 1) % 256
         return self.deck[self.deck[self.deck[self.j]]]
