@@ -6,7 +6,6 @@ class SPIKE:
     def __init__(self):
         self.deck = list(range(256))
         self.j = 0
-        self.c = 0
         
     def gen_rand_key(self, keylen=32):
         return urandom(keylen)
