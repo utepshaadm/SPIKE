@@ -29,8 +29,6 @@ void spike_ksa(struct spike_ctx *ctx, uint8_t *key, int key_len, uint8_t *nonce,
         ctx->S[k] = ctx->TMP;
         c = (c + 1) & 0xFF;
     }
-
-    /* Nonce mixing loop */
     for (i = 0; i < 256; i++) {
         j = (j + ctx->S[j] + c) & 0xFF;
         uint8_t k = nonce[i % nonce_len];
