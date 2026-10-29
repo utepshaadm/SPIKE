@@ -48,3 +48,4 @@ void spike_update(struct spike_ctx *ctx) {
 uint8_t spike_crypt(struct spike_ctx *ctx, uint8_t in) {
     spike_update(ctx);
     return in ^ ctx->O;
+}
