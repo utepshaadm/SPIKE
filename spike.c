@@ -38,7 +38,7 @@ void spike_ksa(struct spike_ctx *ctx, uint8_t *key, int key_len, uint8_t *nonce,
 }
 
 void spike_update(struct spike_ctx *ctx) {
-    ctx->ACC = (ctx->ACC + ctx->S[ctx->S[0]]) & 0xFF;
+    ctx->ACC = (ctx->ACC + ctx->S[ctx->S[0]] + 1) & 0xFF;
     ctx->O = ctx->S[ctx->S[ctx->S[ctx->ACC]]];
     ctx->TMP = ctx->S[0];
     ctx->S[0] = ctx->S[ctx->ACC];
