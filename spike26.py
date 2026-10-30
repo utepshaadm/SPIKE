@@ -26,7 +26,7 @@ class SPIKE26:
         self.j = (self.j + self.deck[self.deck[self.c]]) % 26
         o = self.deck[self.deck[self.deck[self.j]]]
         self.deck[self.j], self.deck[self.c] = self.deck[self.c], self.deck[self.j]
-        self.c = (self.c + 1) % 256
+        self.c = (self.c + 1) % 26
         return o
          
     def encrypt_byte(self, b):
